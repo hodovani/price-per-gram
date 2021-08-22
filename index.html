@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body{
+        font-size: 16px;
+    }
+</style>
+<body>
+
+<form>
+	<fieldset>
+    	<legend>1</legend>
+		<label for="first-item-price">₴</label>
+  		<input min="1" placeholder="1" value="1" type="number" id="first-item-price" name="first-item-price"><br/>
+        <label for="first-item-gram">g</label>
+  		<input min="1" placeholder="1" value="1" type="number" id="first-item-gram" name="first-item-gram"><br/>
+		<label for="first-item-price-per-gram">₴/g</label>
+  		<input disabled type="number" id="first-item-price-per-gram" name="first-item-price-per-gram"><br/>
+	</fieldset>
+
+    <fieldset>
+    	<legend>2</legend>
+		<label for="second-item-price">₴</label>
+  		<input min="1" placeholder="1" value="1" type="number" id="second-item-price" name="second-item-price"><br/>
+        <label for="second-item-gram">g</label>
+  		<input min="1" placeholder="1" value="1" type="number" id="second-item-gram" name="second-item-gram"><br/>
+		<label for="second-item-price-per-gram">₴/g</label>
+  		<input disabled type="number" id="second-item-price-per-gram" name="second-item-price-per-gram"><br/>
+	</fieldset>
+</form>
+
+</body>
+<script>
+window.onload = function(){
+    // 1
+	const firstItemPrice = document.getElementById('first-item-price');
+    const firstItemGram = document.getElementById('first-item-gram');
+    const firstItemPricePerGram = document.getElementById('first-item-price-per-gram');
+
+	firstItemPrice.addEventListener('change', ({target:{value}}) => {
+        firstItemPricePerGram.value = value / firstItemGram.value;
+    });
+
+    firstItemGram.addEventListener('change', ({target:{value}}) => {
+        firstItemPricePerGram.value = firstItemPrice.value / value;
+    });
+
+    // 2
+    const secondItemPrice = document.getElementById('second-item-price');
+    const secondItemGram = document.getElementById('second-item-gram');
+    const secondItemPricePerGram = document.getElementById('second-item-price-per-gram');
+
+	secondItemPrice.addEventListener('change', ({target:{value}}) => {
+        secondItemPricePerGram.value = value / secondItemGram.value;
+    });
+
+    secondItemGram.addEventListener('change', ({target:{value}}) => {
+        secondItemPricePerGram.value = secondItemPrice.value / value;
+    });
+} 
+</script>
+</html>
